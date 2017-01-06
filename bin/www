@@ -4,15 +4,15 @@
  * Module dependencies.
  */
 
-var app = require('../app.js');
-var debug = require('debug')('tyt:server');
+var app = require('../index');
+var debug = require('debug')('tut-backend:server');
 var http = require('http');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '3010');
 app.set('port', port);
 
 /**
