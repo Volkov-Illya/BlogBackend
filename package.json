@@ -21,6 +21,7 @@
     "node-pre-gyp": "^0.6.32",
     "path": "^0.12.7",
     "serve-favicon": "~2.3.0"
+
   },
   "devDependencies": {
     "chai": "^3.2.0",
