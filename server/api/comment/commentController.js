@@ -1,6 +1,4 @@
 var commentService = require('./commentService');
-var _ = require('lodash');
-
 
 exports.get = function (req, res, next) {
     console.log(req.params.post_id);
@@ -21,6 +19,3 @@ exports.put = function (req, res, next) {
         .then((post) => res.json(post))
         .catch((err) => next(err));
 };
-
-
-
