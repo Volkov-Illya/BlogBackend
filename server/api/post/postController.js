@@ -13,7 +13,7 @@ exports.post = function (req, res, next) {
         .catch((err) => next(err))
 };
 
-exports.get = function (req, res, next) {
+exports.getAll = function (req, res, next) {
     postService.getAllPosts({author: req.params.id})
         .then((post) => res.json(post))
         .catch((err) => next(err));

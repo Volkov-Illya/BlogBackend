@@ -7,7 +7,7 @@ router.route('/')
     .post(controller.post);
 
 router.route('/:id')
-    .get(controller.get)
+    .get(controller.getAll)
     .put(controller.put)
     .delete(controller.delete);
 
