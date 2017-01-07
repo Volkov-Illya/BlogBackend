@@ -1,13 +1,15 @@
-var router = require('express').Router();
-var controller = require('./commentController');
+const router = require('express').Router();
+const controller = require('./commentController');
+const auth = require('../auth/auth');
 
+var checkUser = [auth.decodeToken(), auth.getFreshUser()];
 
 router.route('/:post_id')
     .get(controller.get)
-    .post(controller.post);
+    .post(checkUser, controller.post);
 
 router.route('/:comment_id')
-    .put(controller.put);
-// .delete(controller.delete);
+    .put(checkUser, controller.put)
+    // .delete(checkUser, controller.delete);
 
 module.exports = router;

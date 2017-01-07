@@ -2,7 +2,7 @@ var express = require('express');
 var app = express();
 var config = require('./config/config');
 var run = require('./run');
-var api = require('./api/api');
+var api = require('./api/routes');
 const morgan = require('morgan');
 var path = require('path');
 

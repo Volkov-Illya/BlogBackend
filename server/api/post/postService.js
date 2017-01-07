@@ -1,6 +1,5 @@
 var postModel = require('./postModel');
 const _ = require('lodash');
-
 module.exports.create = (data) => {
     const post = new postModel();
     _.assign(post, data, data.body);
