@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 const expressJwt = require('express-jwt');
 const config = require('../../config/config');
 const checkToken = expressJwt({secret: config.secrets.jwt});
-const User = require('../../api/user/userModel');
 const crypto = require('crypto');
 
 exports.decodeToken = function () {
@@ -12,23 +11,6 @@ exports.decodeToken = function () {
         }
         checkToken(req, res, next);
     };
-};
-
-exports.getFreshUser = function () {
-    return function (req, res, next) {
-
-        User.findById(req.user._id)
-            .then(function (user) {
-                if (!user) {
-                    res.status(401).send('Unauthorized');
-                } else {
-                    req.user = user;
-                    next();
-                }
-            }, function (err) {
-                next(err);
-            })
-    }
 };
 
 exports.signToken = function (id) {

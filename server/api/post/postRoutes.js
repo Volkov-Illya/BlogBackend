@@ -1,14 +1,13 @@
 const router = require('express').Router();
 const controller = require('./postController');
 const auth = require('../auth/auth');
+const authCtrl = require('../auth/authController');
 
-var checkUser = [auth.decodeToken(), auth.getFreshUser()];
-
-// router.param('id', controller.params);
+var checkUser = [auth.decodeToken()];
 
 router.route('/')
     .get(controller.get)
-    .post(checkUser,controller.post);
+    .post(checkUser,  authCtrl.getFreshUser,controller.post);
 
 router.route('/:id')
     .get(controller.getAll)
