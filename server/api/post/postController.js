@@ -1,6 +1,11 @@
 var postService = require('./postService');
 var _ = require('lodash');
 
+exports.params = function (req, res, next, id, user) {
+    postService.params(id, user)
+        .then((res) => next())
+        .catch((err) => next(err))
+};
 
 exports.get = function (req, res, next) {
     postService.getAll()
@@ -26,9 +31,10 @@ exports.put = function (req, res, next) {
 };
 
 exports.delete = function (req, res, next) {
-    postService.delete(req.params.id)
-        .then(() => {
-            res.sendStatus(204);
+    postService.delete(req.params.id, req.user)
+        .then((result) => {
+            if (!result) throw new Error('Not found');
+            res.sendStatus(200);
         })
         .catch((err) => {
             return next(err);

@@ -38,3 +38,14 @@ module.exports.update = (id, data) => {
             return (err);
         });
 };
+
+exports.params = function(req, res, id) {
+    return User.findById(id)
+        .select('-password')
+        .then(function (user) {
+            if (!user) {
+                next(new Error('No user with that id'));
+            }
+            return user;
+        });
+};

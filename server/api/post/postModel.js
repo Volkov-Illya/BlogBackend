@@ -5,11 +5,13 @@ var Schema = mongoose.Schema;
 var PostSchema = new Schema({
     title: {
         type: String,
-        trim: true
+        trim: true,
+        maxlength: 150
     },
     text: {
         type: String,
-        trim: true
+        trim: true,
+        maxlength: 1000
     },
     author: {
         type: ObjectId,

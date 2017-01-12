@@ -34,9 +34,19 @@ module.exports.update = (data) => {
         });
 };
 
-module.exports.delete = (id) => {
-    return postModel.findByIdAndRemove(id)
-        .catch((err) => {
-            return (err);
+module.exports.delete = (id, user) => {
+    return postModel.findById(id)
+        .then((post) => {
+            if (!post) return false;
+            if(post && post.author == user.id) return post.remove();
         });
 };
+
+module.exports.params = (id) => {
+    return postModel.findById(id)
+        .populate('author', 'username')
+        .then(function (post) {
+            return post;
+        });
+};
+
